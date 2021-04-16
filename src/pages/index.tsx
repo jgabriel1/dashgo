@@ -43,7 +43,7 @@ export default function SignIn() {
             name="email"
             type="email"
             label="E-mail"
-            error={errors.email}
+            error={errors.email?.message}
             {...register('email')}
           />
 
@@ -51,7 +51,7 @@ export default function SignIn() {
             name="password"
             type="password"
             label="Senha"
-            error={errors.password}
+            error={errors.password?.message}
             {...register('password')}
           />
         </Stack>
