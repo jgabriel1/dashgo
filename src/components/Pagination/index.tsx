@@ -34,6 +34,9 @@ export function Pagination({
         )
       : [];
 
+  const firstRegister = (currentPage - 1) * registersPerPage + 1;
+  const lastRegister = firstRegister + registersPerPage - 1;
+
   return (
     <Stack
       direction={['column', 'row']}
@@ -43,7 +46,8 @@ export function Pagination({
       spacing="6"
     >
       <Box>
-        <strong>0</strong> - <strong>10</strong> de <strong>100</strong>
+        <strong>{firstRegister}</strong> - <strong>{lastRegister}</strong> de{' '}
+        <strong>{totalCountOfRegisters}</strong>
       </Box>
 
       <Stack direction="row" spacing="2">
