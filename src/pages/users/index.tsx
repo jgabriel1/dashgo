@@ -31,22 +31,28 @@ interface UserData {
 }
 
 export default function UserList() {
-  const { data, isLoading, error } = useQuery<UserData[]>('users', async () => {
-    const _data = await fetch('http://localhost:3000/api/users').then(r =>
-      r.json()
-    );
+  const { data, isLoading, error } = useQuery<UserData[]>(
+    'users',
+    async () => {
+      const _data = await fetch('http://localhost:3000/api/users').then(r =>
+        r.json()
+      );
 
-    return _data.users.map(user => ({
-      id: user.id,
-      name: user.name,
-      email: user.email,
-      created_at: new Date(user.created_at).toLocaleDateString('pt-BR', {
-        day: '2-digit',
-        month: 'long',
-        year: 'numeric',
-      }),
-    }));
-  });
+      return _data.users.map(user => ({
+        id: user.id,
+        name: user.name,
+        email: user.email,
+        created_at: new Date(user.created_at).toLocaleDateString('pt-BR', {
+          day: '2-digit',
+          month: 'long',
+          year: 'numeric',
+        }),
+      }));
+    },
+    {
+      staleTime: 1000 * 5, // 5 seconds
+    }
+  );
 
   const isWideVersion = useBreakpointValue({
     base: false,
