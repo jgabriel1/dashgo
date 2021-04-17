@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import {
   Box,
   Flex,
@@ -25,6 +26,7 @@ import { Pagination } from '../../components/Pagination';
 import { Sidebar } from '../../components/Sidebar';
 
 export default function UserList() {
+  const [currentPage, setCurrentPage] = useState(1);
   const { data, error, isLoading, isFetching } = useUsers();
 
   const isWideVersion = useBreakpointValue({
@@ -129,8 +131,8 @@ export default function UserList() {
 
               <Pagination
                 totalCountOfRegisters={200}
-                currentPage={6}
-                onPageChange={() => null}
+                currentPage={currentPage}
+                onPageChange={setCurrentPage}
               />
             </>
           )}
