@@ -7,6 +7,7 @@ import { ReactQueryDevtools } from 'react-query/devtools';
 import { theme } from '../styles/theme';
 import { SidebarDrawerProvider } from '../hooks/sidebarDrawer';
 import { makeServer } from '../services/mirage';
+import { queryClient } from '../services/queryClient';
 
 const isDevelopment = process.env.NODE_ENV === 'development';
 
@@ -15,10 +16,8 @@ if (isDevelopment) {
 }
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const queryClient = useRef(new QueryClient());
-
   return (
-    <QueryClientProvider client={queryClient.current}>
+    <QueryClientProvider client={queryClient}>
       <ChakraProvider resetCSS theme={theme}>
         <SidebarDrawerProvider>
           <Component {...pageProps} />
